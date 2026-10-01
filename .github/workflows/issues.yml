@@ -1,0 +1,19 @@
+name: Issue creado
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  issues: read
+
+jobs:
+  issue-created:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mostrar información del issue
+        env:
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+        run: |
+          printf 'Issue #%s creado: %s\n' "$ISSUE_NUMBER" "$ISSUE_TITLE"
